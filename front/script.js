@@ -1,35 +1,35 @@
 // Fonction pour récupérer une recette aléatoire
 function getRandomRecipe() {
-    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    fetch('http://localhost:5000/getRecipe')
         .then(response => response.json())
         .then(data => {
-            const recipe = data.meals[0];
 
             // Afficher le nom de la recette
             const recipeName = document.createElement('h2');
-            recipeName.textContent = recipe.strMeal;
+            recipeName.textContent = data.name;
 
             // Afficher les ingrédients
-            const ingredients = document.createElement('ul');
-            ingredients.innerHTML = '';
-            for (let i = 1; i <= 20; i++) {
-                const ingredient = recipe['strIngredient' + i];
-                if (ingredient) {
-                    const li = document.createElement('li');
-                    li.textContent = ingredient;
-                    ingredients.appendChild(li);
-                }
-            }
+            const ingredients = data.ingredients
+            const ingredientsUL = document.createElement('ul');
+
+            ingredients.forEach(ingredient => {
+                const ingredientLI = document.createElement('li');
+                ingredientLI.textContent = ingredient;
+                ingredientsUL.appendChild(ingredientLI);
+            });
+
+
 
             // Afficher les instructions
             const instructions = document.createElement('p');
-            instructions.textContent = recipe.strInstructions;
+            instructions.textContent = data.instructions;
+
 
             // Ajouter les éléments à la page
             const recipeDiv = document.getElementById('recipe');
             recipeDiv.innerHTML = '';
             recipeDiv.appendChild(recipeName);
-            recipeDiv.appendChild(ingredients);
+            recipeDiv.appendChild(ingredientsUL);
             recipeDiv.appendChild(instructions);
         })
         .catch(error => console.error(error));
