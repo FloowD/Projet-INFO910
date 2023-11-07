@@ -1,5 +1,13 @@
 # Projet-INFO910
 
+## Description du projet
+
+Un projet de déploiement d'une application web de recette de cuisine aléatoire avec Kubernetes.
+
+Le projet est composé de deux parties :
+- Un backend en NodeJS
+- Un frontend en HTML/CSS/JS
+
 ## Commandes déployement du projet
 
 ### Construire les images docker
