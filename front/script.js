@@ -1,6 +1,6 @@
 // Fonction pour récupérer une recette aléatoire
 function getRandomRecipe() {
-    fetch('http://localhost:5000/getRecipe')
+    fetch('/getRecipe')
         .then(response => response.json())
         .then(data => {
 
